@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+
+  chemberta:
+    image: chemberta:latest
+    container_name: chemberta
+    build: 
+      context: .
+      dockerfile: ./smiles_preprocessing/Dockerfile
+      args:
+        - USER_ID=${USER_ID}
+        - GROUP_ID=${GROUP_ID}
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./:/home/python/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: ["gpu", "utility", "compute"]
+
+  selformer:
+    image: selformer:latest
+    container_name: selformer
+    build: 
+      context: .
+      dockerfile: ./selfies_preprocessing/Dockerfile
+      args:
+        - USER_ID=${USER_ID}
+        - GROUP_ID=${GROUP_ID}
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./:/home/python/data
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ['0']
+              capabilities: ["gpu", "utility", "compute"]
