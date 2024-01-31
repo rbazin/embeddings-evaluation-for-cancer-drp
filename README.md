@@ -10,6 +10,10 @@ Our research, documented in `report.pdf`, addresses the pressing challenge of pr
 
 This project was the final assignment of course ECSE556: Deep Learning for Biology Networks at McGill University.
 
+<p align="center">
+  <img src="architecture_drp.png">
+</p>
+
 ## Usage
 
 Python3.11.5 was used to run this project. Install all required libraries using the `requirements.txt` file.
